@@ -1,20 +1,19 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Layout from '../Containers/Main.js';
-import NotFound from '../Components/NotFound.js';
-import LazyBundle from '../LazyBundle.js'
-const lazyLoadComponent = (comp) => (props) => (
-    <LazyBundle load={comp}>
-      {(Container) => <Container {...props}/>}
-    </LazyBundle>
-  )
+
+
+import AsyncComponent from '../AsyncComponent.js'
+
+const Home = AsyncComponent(() => import("../Containers/Home.js"));
+const NotFound = AsyncComponent(() => import("../Components/NotFound.js"));
+
 export default(
     <Router>
         <Switch>
-            <Route exact path='/' component={Layout}/>
+            <Route exact path='/:id/website' component={Home}/>
 
-            <Route path='*' component={lazyLoadComponent(NotFound)}/>
+            <Route path='*' component={NotFound}/>
         </Switch>
     </Router>
 );
