@@ -7,8 +7,8 @@ import React, { Component } from 'react'
       state = {
         Component: null,
       }
-  
-      componentWillMount() {
+      //componentWillMount 请避免使用，需要使用componentDidMount
+      componentDidMount() {
         if (this.hasLoadedComponent()) {
           return;
         }
