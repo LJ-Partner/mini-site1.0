@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Loading.less'
+//import './Loading.less'
 export default class Loading extends React.Component{
 	constructor(props) {
 		super(props)

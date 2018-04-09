@@ -1,7 +1,16 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom';
-import Api from '../Api/index.js';
-import Loading from '../Components/loading/loading.js'
+import Api from '../../Api/index.js';
+import './Home.less';
+import '../../assets/index.js'
+import {Loading, MiniCarousel} from '../../Components/index'
+const IndexHeadCarousel = {
+    autoPlay: true,
+    showArrows: false,
+    showStatus: false,
+    showThumbs: false,
+    infiniteLoop: true
+}
 export default class Home extends React.Component {
     constructor(props) {
         super(props)
@@ -11,7 +20,7 @@ export default class Home extends React.Component {
         }
     }
     async request() {
-        //输入路由参数
+        //输入路由参数 
         await Api
             .Home(this.props.match.params.id)
             .then(res => {
@@ -29,19 +38,27 @@ export default class Home extends React.Component {
     render() {
 
         let _home = this.state.homedata;
+        
         // 一定要这样写
         if (Object.keys(_home).length > 0 && _home.constructor == Object) {
+            
             return (
-
-                <div className="main">
-                    {_home.index.Introduce}
+                <div className="wrap">
+                    <div className="main home" >
+                        <div className="main-cnt">
+                            <MiniCarousel
+                            config={IndexHeadCarousel}
+                             bannerList={[_home.index.Banner1,_home.index.Banner2,_home.index.Banner3]}/>
+                        </div>
+                    </div>
                 </div>
+                
             )
         } else {
             return (
 
                 <div className="main">
-                     <Loading /> 
+                    <Loading/>
                 </div>
             )
         }

@@ -5,8 +5,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import AsyncComponent from '../AsyncComponent.js'
 
-const Home = AsyncComponent(() => import("../Containers/Home.js"));
-const NotFound = AsyncComponent(() => import("../Components/NotFound.js"));
+import Home from "../Containers/Home/Home.js"
+import NotFound from "../Components/NotFound.js"
 
 export default(
     <Router>
